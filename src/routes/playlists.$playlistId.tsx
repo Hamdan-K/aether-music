@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PlaceholderPage } from "@/components/placeholder-page";
+export const Route = createFileRoute("/playlists/$playlistId")({ head: () => ({ meta: [{ title: "Playlist — Aether" }, { name: "description", content: "A personal playlist in Aether." }, { property: "og:title", content: "Playlist — Aether" }, { property: "og:description", content: "A personal playlist in Aether." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: PlaylistDetail });
+function PlaylistDetail() { const { playlistId } = Route.useParams(); const title = playlistId.split("-").map((word) => word[0]?.toUpperCase() + word.slice(1)).join(" "); return <PlaceholderPage eyebrow="Playlist detail" title={title} description="A focused view of this collection, with sequencing and notes." />; }

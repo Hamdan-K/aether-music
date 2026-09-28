@@ -1,0 +1,3 @@
+export function PlaceholderPage({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+  return <div className="mx-auto flex min-h-[65vh] max-w-4xl items-center"><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{eyebrow}</p><h1 className="mt-3 text-5xl font-semibold tracking-tight sm:text-7xl">{title}</h1><div className="mt-8 h-px w-20 bg-primary" /><p className="mt-8 max-w-xl text-base leading-7 text-muted-foreground">{description}</p><p className="mt-12 text-xs font-semibold uppercase tracking-[0.18em] text-subtle">Coming next</p></div></div>;
+}
