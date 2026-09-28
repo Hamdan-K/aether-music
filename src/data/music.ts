@@ -33,16 +33,26 @@ const titles = [
 ];
 
 export const songs: Song[] = titles.map((title, index) => {
-  const album = albums[index % albums.length];
+  const album = albums[index % albums.length] ?? albums[0];
+  if (!album) throw new Error("Aether requires at least one album");
   return {
     id: `song-${index + 1}`,
     title,
-    artist: artists[index % artists.length],
+    artist: artists[index % artists.length] ?? "Unknown artist",
     album: album.title,
     duration: 198 + ((index * 17) % 116),
     artwork: album.artwork,
   };
 });
+
+export const initialSong: Song = songs[0] ?? {
+  id: "song-fallback",
+  title: "Halcyon",
+  artist: "Nia Arden",
+  album: "Glass Hours",
+  duration: 240,
+  artwork: amberArc,
+};
 
 export const playlists = [
   { id: "late-hours", title: "Late Hours", count: 18 },

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { songs, type Song } from "@/data/music";
+import { initialSong, songs, type Song } from "@/data/music";
 
 type RepeatMode = "off" | "all" | "one";
 type PlayerContextValue = {
@@ -29,7 +29,7 @@ type PlayerContextValue = {
 const PlayerContext = createContext<PlayerContextValue | null>(null);
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
-  const [current, setCurrent] = useState(songs[0]);
+  const [current, setCurrent] = useState<Song>(initialSong);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(42);
   const [volume, setVolume] = useState(0.72);
@@ -48,7 +48,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const next = useCallback(() => {
     const currentIndex = songs.findIndex((song) => song.id === current.id);
     const index = shuffle ? Math.floor(Math.random() * songs.length) : (currentIndex + 1) % songs.length;
-    setCurrent(songs[index]);
+    setCurrent(songs[index] ?? initialSong);
     setProgress(0);
     setPlaying(true);
   }, [current.id, shuffle]);
@@ -56,7 +56,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const previous = useCallback(() => {
     if (progress > 5) return setProgress(0);
     const currentIndex = songs.findIndex((song) => song.id === current.id);
-    setCurrent(songs[(currentIndex - 1 + songs.length) % songs.length]);
+    setCurrent(songs[(currentIndex - 1 + songs.length) % songs.length] ?? initialSong);
     setProgress(0);
   }, [current.id, progress]);
 

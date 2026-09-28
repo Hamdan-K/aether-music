@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
-  ChevronDown, Disc3, Heart, Home, Library, ListMusic, Maximize2, Menu, MoreHorizontal,
+  ChevronDown, Disc3, Home, Library, ListMusic, Maximize2,
   Pause, Play, Repeat2, Search, Settings, Shuffle, SkipBack, SkipForward, Volume2, X,
 } from "lucide-react";
 import { useMemo, useState, type ReactNode } from "react";
@@ -109,7 +109,7 @@ function SearchOverlay() {
         <div className="max-h-[65vh] overflow-y-auto p-3">
           <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle">Songs</p>
           {results.map((song) => <button key={song.id} className="flex w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-accent" onClick={() => { p.play(song); p.setSearchOpen(false); }}><img src={song.artwork} alt="" className="size-10 rounded-md object-cover" width={1024} height={1024} loading="lazy" /><span className="min-w-0 flex-1"><span className="block truncate text-sm">{song.title}</span><span className="block truncate text-xs text-muted-foreground">{song.artist} · {song.album}</span></span><Play className="size-4 text-primary" /></button>)}
-          {!query && <><p className="mt-3 px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle">Browse</p><div className="grid grid-cols-2 gap-2 px-2 pb-2">{[albums[0].title, artists[1], playlists[0].title, "Favorites"].map((item) => <div key={item} className="rounded-xl border border-border bg-card p-4 text-sm">{item}</div>)}</div></>}
+          {!query && <><p className="mt-3 px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-subtle">Browse</p><div className="grid grid-cols-2 gap-2 px-2 pb-2">{[albums[0]?.title ?? "Albums", artists[1] ?? "Artists", playlists[0]?.title ?? "Playlists", "Favorites"].map((item) => <div key={item} className="rounded-xl border border-border bg-card p-4 text-sm">{item}</div>)}</div></>}
         </div>
       </div>
     </div>
