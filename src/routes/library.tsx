@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PlaceholderPage } from "@/components/placeholder-page";
+export const Route = createFileRoute("/library")({ head: () => ({ meta: [{ title: "Library — Aether" }, { name: "description", content: "Browse your songs, albums, and artists in Aether." }, { property: "og:title", content: "Library — Aether" }, { property: "og:description", content: "Browse your songs, albums, and artists in Aether." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <PlaceholderPage eyebrow="Songs · Albums · Artists" title="Library" description="Every recording you keep, organized with clarity and care." /> });
